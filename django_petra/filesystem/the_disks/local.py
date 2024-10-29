@@ -1,5 +1,5 @@
 import os
-from drf_friend.path import base_path
+from django_petra.path import base_path
 import shutil
 
 class LocalStorage:

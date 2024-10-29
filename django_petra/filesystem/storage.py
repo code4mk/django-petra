@@ -1,5 +1,5 @@
-from drf_friend.filesystem.the_disks.local import LocalStorage
-from drf_friend.filesystem.the_disks.s3 import S3Storage
+from django_petra.filesystem.the_disks.local import LocalStorage
+from django_petra.filesystem.the_disks.s3 import S3Storage
 
 class Storage:
     def __init__(self, disk='local'):
