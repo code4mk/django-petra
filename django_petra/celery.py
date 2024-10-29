@@ -23,7 +23,7 @@ def configure_celery(project_name, type = 'redis'):
     app.conf.broker_url = os.environ.get('CELERY_BROKER')
 
     # Dynamically import schedules from {project_name}.friend_scheduler
-    schedules_module = importlib.import_module(f'{project_name}.friend_config.scheduler')
+    schedules_module = importlib.import_module(f'{project_name}.petra_config.scheduler')
     app.conf.beat_schedule = bind_beat_schedule(schedules=schedules_module.schedules)
 
     # RedBeat Configuration

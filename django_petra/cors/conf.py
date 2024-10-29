@@ -4,7 +4,7 @@ from django_petra.path import base_module_name
 the_base_module_name = base_module_name()
 
 # Import CORS settings dynamically
-cors_module = importlib.import_module(f"{the_base_module_name}.friend_config.cors")
+cors_module = importlib.import_module(f"{the_base_module_name}.petra_config.cors")
 ALLOWED_METHODS = cors_module.ALLOWED_METHODS
 ALLOWED_ORIGINS = cors_module.ALLOWED_ORIGINS
 ALLOWED_ORIGINS_PATTERNS = cors_module.ALLOWED_ORIGINS_PATTERNS
