@@ -13,8 +13,8 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseBase
 from django.utils.cache import patch_vary_headers
 
-from drf_friend.cors.conf import conf
-from drf_friend.cors.signals import check_request_enabled
+from django_petra.cors.conf import conf
+from django_petra.cors.signals import check_request_enabled
 
 ACCESS_CONTROL_ALLOW_ORIGIN = "access-control-allow-origin"
 ACCESS_CONTROL_EXPOSE_HEADERS = "access-control-expose-headers"

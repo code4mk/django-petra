@@ -12,7 +12,7 @@ class APILoggerMiddleware:
         api_call_time = (end_time - start_time).total_seconds()
 
         # Log API request and response to the database
-        if 'hello-drf-friend/api/show-api-logs/' not in request.path :
+        if 'hello-django-petra/api/show-api-logs/' not in request.path :
             self.log_api(request, response, api_call_time)
 
         return response

@@ -7,6 +7,6 @@ drf-friend is a collection of utilities and enhancements for Django Rest Framewo
     - Utility functions and mixins to handle common API patterns.
     - Simplifies pagination, routing, and data serialization tasks.
     
-Check the project repository for detailed documentation, examples, and updates: https://github.com/code4mk/drf-friend
-* Doc: https://drf-friend.code4mk.org
+Check the project repository for detailed documentation, examples, and updates: https://github.com/code4mk/django-petra
+* Doc: https://django-petra.code4mk.org
 * hiremostafa@gmail.com

@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core.checks import CheckMessage
 from django.core.checks import Error
 
-from drf_friend.cors.conf import conf
+from django_petra.cors.conf import conf
 
 re_type = type(re.compile(""))
 

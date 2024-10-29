@@ -1,5 +1,5 @@
 import importlib
-from drf_friend.path import base_module_name
+from django_petra.path import base_module_name
 
 the_base_module_name = base_module_name()
 

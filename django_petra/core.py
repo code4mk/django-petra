@@ -62,12 +62,12 @@ def bind_modules_urls():
     return urlpatterns
 
 def show_modules_url():
-    from drf_friend.router import Router, Route
+    from django_petra.router import Router, Route
     the_modules_path = Path(modules_path()).resolve()
     
     # Initialize an empty list to store urlpatterns
     the_routes = []
-    # urlpatterns.append(path(f'hello-drf-friend/', include(('django_petra.project.urls', 'django_petra.project'))))
+    # urlpatterns.append(path(f'hello-django-petra/', include(('django_petra.project.urls', 'django_petra.project'))))
 
     # Loop through each module directory
     for module_dir in the_modules_path.iterdir():

@@ -13,4 +13,4 @@ from django.db import models
 #     client_ip = models.GenericIPAddressField()
 
 #     class Meta:
-#         db_table = 'drf_friend_api_logs'
+#         db_table = 'django_petra_api_logs'
