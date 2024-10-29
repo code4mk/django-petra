@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet as View
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
-from drf_friend.status import Status as MyStatus
+from django_petra.status import Status as MyStatus
 
 class ViewSet(View):
     def __init__(self, *args, **kwargs):

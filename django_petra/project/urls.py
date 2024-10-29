@@ -1,6 +1,6 @@
 from django.urls import path 
-from drf_friend.project.views import ProjectViewset
-from drf_friend.router import Router, Route
+from django_petra.project.views import ProjectViewset
+from django_petra.router import Router, Route
 
 routes = [
     Router.get('status/', ProjectViewset.get_status),

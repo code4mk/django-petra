@@ -1,5 +1,5 @@
 from django.utils import timezone
-from drf_friend.project.models import APILogs
+from django_petra.project.models import APILogs
 
 class APILoggerMiddleware:
     def __init__(self, get_response):

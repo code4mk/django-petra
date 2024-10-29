@@ -1,17 +1,16 @@
-from drf_friend.drf_core import Response, ViewSet, status
-from drf_friend.core import show_modules_url
-from drf_friend.raw_query.helpers import (
+from django_petra.petra_core import Response, ViewSet, status
+from django_petra.core import show_modules_url
+from django_petra.raw_query.helpers import (
   fetch_all_to_dictionary,
   raw_query_collection
 )
 from django.db import connection
 
-
 class ProjectViewset(ViewSet):
   
   def get_status(self, request):
     data = {
-      'status': "drf-friend is working fine"
+      'status': "django-petra is working fine"
     }
     return Response(data, status=status.HTTP_200_OK)
   
@@ -23,7 +22,7 @@ class ProjectViewset(ViewSet):
     return Response(data, status=status.HTTP_200_OK)
   
   def get_api_logs(self, request):
-      query = 'SELECT * FROM drf_friend_api_logs'
+      query = 'SELECT * FROM django_petra_api_logs'
   
       with connection.cursor() as cursor:
           cursor.execute(query)
@@ -48,10 +47,10 @@ class ProjectViewset(ViewSet):
         
       })
     
-    return Response(package_info)
+    return Response(package_info, status=status.HTTP_200_OK)
   
   def get_system_environment(self, request):
-    from drf_friend.project.utils.system_environment import system_environment
-    a = system_environment()
-    return Response(a)
+    from django_petra.project.utils.system_environment import system_environment
+    system_info = system_environment()
+    return Response(system_info, status=status.HTTP_200_OK)
         
