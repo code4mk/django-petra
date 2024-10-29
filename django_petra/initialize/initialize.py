@@ -2,11 +2,11 @@ import os
 import django
 import importlib
 from django.conf import settings
-from drf_friend.core import bind_modules_app, bind_modules_urls
-from drf_friend.path import base_module_name
+from django_petra.core import bind_modules_app, bind_modules_urls
+from django_petra.path import base_module_name
 
 def init_cors_middleware():
-    cors_middleware_class = 'drf_friend.cors.middleware.CorsMiddleware'
+    cors_middleware_class = 'django_petra.cors.middleware.CorsMiddleware'
     settings.MIDDLEWARE.insert(0, cors_middleware_class)
     
 def init_all_modules():
