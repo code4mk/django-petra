@@ -14,8 +14,8 @@ def bind_modules_app():
         'celery',
     ]
     
-    INSTALLED_APPS.append('drf_friend.project')
-    INSTALLED_APPS.append('drf_friend.cors')
+    INSTALLED_APPS.append('django_petra.project')
+    INSTALLED_APPS.append('django_petra.cors')
 
     # Loop through each module directory
     for module_dir in the_modules_path.iterdir():
@@ -39,7 +39,7 @@ def bind_modules_urls():
     
     # Initialize an empty list to store urlpatterns
     urlpatterns = []
-    urlpatterns.append(path(f'hello-drf-friend/', include(('drf_friend.project.urls', 'drf_friend.project'))))
+    urlpatterns.append(path(f'hello-django-petra/', include(('django_petra.project.urls', 'django_petra.project'))))
 
     # Loop through each module directory
     for module_dir in the_modules_path.iterdir():
@@ -67,7 +67,7 @@ def show_modules_url():
     
     # Initialize an empty list to store urlpatterns
     the_routes = []
-    # urlpatterns.append(path(f'hello-drf-friend/', include(('drf_friend.project.urls', 'drf_friend.project'))))
+    # urlpatterns.append(path(f'hello-drf-friend/', include(('django_petra.project.urls', 'django_petra.project'))))
 
     # Loop through each module directory
     for module_dir in the_modules_path.iterdir():
@@ -97,10 +97,10 @@ def show_modules_url():
     # Return the urlpatterns list
     return the_routes
 
-from drf_friend.initialize import init_drf_friend
+from django_petra.initialize import init_django_petra
 
 def initialize():
-    init_drf_friend()
+    init_django_petra()
     
 
 

@@ -49,3 +49,46 @@ Pipfile.lock
 
 # Ignore the .vscode folder for Visual Studio Code
 .vscode/
+
+# Additional Python virtual environments
+.python-version  # pyenv
+.venv/
+env/
+ENV/
+pythonenv*
+
+# Additional IDE/Editor files
+*.swp           # Vim swap files
+*.swo
+*.swn
+.vim/
+*.sublime-*     # Sublime Text
+.settings/      # Eclipse
+.project
+.classpath
+
+# Additional testing/coverage files
+htmlcov/        # Coverage HTML reports
+.tox/           # Tox testing
+coverage.xml
+*.cover
+.hypothesis/
+
+# Additional package/dependency files
+pip-log.txt
+pip-delete-this-directory.txt
+requirements.txt.lock
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Documentation
+docs/_build/
+_docs/
+/site
+
+# Logs and databases
+*.log
+*.sqlite
+*.db

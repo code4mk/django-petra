@@ -1,6 +1,6 @@
 
-__title__ = 'DRF Friend'
-__version__ = '0.0.29'
+__title__ = 'Django Petra'
+__version__ = '0.0.01'
 __author__ = 'Mostafa'
 
 # Version synonym
