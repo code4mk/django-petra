@@ -24,9 +24,9 @@ if sys.argv[-1] == 'publish':
     # print("You probably want to also tag the version now:")
     # print("  git tag -a %s -m 'version %s'" % (version, version))
     # print("  git push --tags")
-    shutil.rmtree('dist')
-    shutil.rmtree('build')
-    shutil.rmtree('django-petra.egg-info')
+    # shutil.rmtree('dist')
+    # shutil.rmtree('build')
+    # shutil.rmtree('django-petra.egg-info')
     sys.exit()
     
 def read(f):
