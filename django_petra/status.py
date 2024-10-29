@@ -1,5 +1,3 @@
-# code4mk/status.py
-
 class Status:
     # Informational - 1xx
     HTTP_100_CONTINUE = 100
