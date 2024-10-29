@@ -1,16 +1,16 @@
 import os
 from collections import OrderedDict
-from drf_friend.path import base_path
-from drf_friend.env import getEnv
+from django_petra.path import base_path
+from django_petra.env import get_env
     
 def load_sql(sql_file, load_from_module = False):
     if load_from_module == True:
       components = sql_file.split('.')
-      path = base_path('modules', getEnv('RAW_SQL_MODULE_DIR', 'sql_quries'), *components)
+      path = base_path('modules', get_env('RAW_SQL_MODULE_DIR', 'sql_quries'), *components)
       path_with_extension = path + ".sql"
     else:
       components = sql_file.split('.')
-      path = base_path(getEnv('RAW_SQL_DIR', 'raw_sql'), *components)
+      path = base_path(get_env('RAW_SQL_DIR', 'raw_sql'), *components)
       path_with_extension = path + ".sql"
 
     # Open and read the SQL file
