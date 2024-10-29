@@ -1,4 +1,4 @@
-from drf_friend.project.tasks import drf_mail
+from django_petra.project.tasks import petra_mail
 
 class SendMailQueue:
     def __init__(self):
@@ -46,4 +46,4 @@ class SendMailQueue:
         Returns:
             None
         """
-        drf_mail.apply_async(args=[self.email], countdown=self.email["delay"])
+        petra_mail.apply_async(args=[self.email], countdown=self.email["delay"])

@@ -1,7 +1,7 @@
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from email.mime.image import MIMEImage
-from drf_friend.mailer.inline_css import inline_css
+from django_petra.mailer.inline_css import inline_css
 
 class SendMail:
     """

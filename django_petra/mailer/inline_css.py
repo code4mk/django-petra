@@ -1,7 +1,7 @@
 import os
 from bs4 import BeautifulSoup
 from premailer import Premailer
-from drf_friend.path import base_path
+from django_petra.path import base_path
 
 def inline_css(html_code):
     # Parse the HTML code

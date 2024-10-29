@@ -1,8 +1,8 @@
 from celery import shared_task
-from drf_friend.mailer.send_mail import SendMail
+from django_petra.mailer.send_mail import SendMail
 
 @shared_task()
-def drf_mail(email_data):
+def petra_mail(email_data):
     mail = SendMail()
     mail.from_email(email_data['from'])
     mail.to(email_data['to'])
