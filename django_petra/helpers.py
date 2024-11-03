@@ -58,3 +58,28 @@ def get_all_request_data(request):
         return combined_data
     except Exception as e:
         raise ParseError(f"Error extracting all request data: {str(e)}")
+
+def get_request_headers(request):
+    """
+    Gets all headers from the request object.
+    
+    :param request: Petra request object
+    :return: Dictionary containing all request headers
+    """
+    try:
+        # META keys starting with 'HTTP_' contain the HTTP headers
+        headers = {
+            key[5:].lower().replace('_', '-'): value 
+            for key, value in request.META.items() 
+            if key.startswith('HTTP_')
+        }
+        
+        # Special handling for Content-Type and Content-Length as they don't have HTTP_ prefix
+        if 'CONTENT_TYPE' in request.META:
+            headers['content-type'] = request.META['CONTENT_TYPE']
+        if 'CONTENT_LENGTH' in request.META:
+            headers['content-length'] = request.META['CONTENT_LENGTH']
+            
+        return headers
+    except Exception as e:
+        raise ParseError(f"Error extracting request headers: {str(e)}")
