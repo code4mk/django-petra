@@ -20,7 +20,19 @@ def petra_dto(form_class):
             if form.is_valid():
                 return view_func(self, request, form, *args, **kwargs)
             
-            raise ValidationError(form.errors)
+            # Format the error response
+            formatted_errors = {
+                'success': False,
+                'errors': {}
+            }
+
+            for field, error_list in form.errors.items():
+                # Convert to array format
+                formatted_errors['errors'][field] = [
+                    f"The {field} {error_list[0]}"  # Format error message
+                ]
+            
+            raise ValidationError(formatted_errors)
         return wrapper
     return decorator
 
