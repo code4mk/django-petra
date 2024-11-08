@@ -54,9 +54,14 @@ def bind_modules_urls():
             if module_urls_path.exists():
                 # Construct the import path for the module's urls
                 module_urls = f'modules.{module_name}.urls'
+
+                # Import the module to get its version
+                urls_module = import_module(module_urls)
+                # Get version from module, default to 'v1' if not specified
+                version = getattr(urls_module, 'API_VERSION', 'v1')
                 
                 # Append a path to urlpatterns, including the module's urls
-                urlpatterns.append(path(f'api/v1/{module_name}/', include((module_urls, module_name))))
+                urlpatterns.append(path(f'api/{version}/{module_name}/', include((module_urls, module_name))))
 
     # Return the urlpatterns list
     return urlpatterns
