@@ -127,22 +127,65 @@ class Route:
 
     Methods:
     - get_all_routes():
-        Retrieves all routes in the collection.
+        Retrieves all routes in the collection, combining routes with the same path.
 
     Returns:
-    list: A list of routes.
+    list: A list of combined route paths.
     """
 
     def __init__(self, routes):
         self.routes = routes
 
     def get_all_routes(self):
-        """Retrieve all routes in the collection.
+        """Retrieve all routes in the collection, combining routes with the same path.
 
         Returns:
-        list: A list of routes.
+        list: A list of combined route paths.
         """
-        return [route["path"] for route in self.routes]
+        import random
+
+        # Group routes by path
+        path_groups = {}
+        for route in self.routes:
+            path = route["path"].split("path('")[1].split("'")[0]
+            view_info = route["path"].split("as_view({")[1].split("})")[0]
+            method_info = view_info.strip("'{}")
+            method, func = method_info.split("': '")
             
+            if path in path_groups:
+                # Add method to existing path
+                path_groups[path]["methods"][method] = func
+            else:
+                # Create new path entry
+                class_name = route["path"].split("path('")[1].split(".as_view")[0].split(", ")[-1]
+                module_name = route["path"].split("name='")[1].split("_")[0]
+                
+                path_segments = path.split("/")
+                path_segments = [seg.lower() for seg in path_segments if seg and '<' not in seg]
+                segments_part = '_'.join(path_segments)
+                random_number = str(random.randint(1000000000, 9999999999))
+                
+                path_groups[path] = {
+                    "class_name": class_name,
+                    "methods": {method: func},
+                    "module_name": module_name,
+                    "path_segments": path_segments,
+                    "random_number": random_number
+                }
+        
+        # Generate combined paths
+        combined_routes = []
+        for path, info in path_groups.items():
+            methods_dict = str(info["methods"]).replace("'", '"')
+            # Sort methods alphabetically and join with underscore
+            methods_str = '_'.join(sorted(info["methods"].keys()))
+            segments_part = '_'.join(info["path_segments"])
+            name = f"{info['module_name']}__{segments_part}__{methods_str}_{info['random_number']}"
+            
+            combined_path = f"path('{path}', {info['class_name']}.as_view({methods_dict}), name='{name}')"
+            combined_routes.append(combined_path)
+            
+        return combined_routes
+
     def show_lists(self):
         return [route["route_lists"] for route in self.routes]
