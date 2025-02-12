@@ -1,6 +1,8 @@
 import os
-from django_petra.path import base_path
 import shutil
+import mimetypes
+
+from django_petra.path import base_path
 
 class LocalStorage:
     def __init__(self):
@@ -9,15 +11,19 @@ class LocalStorage:
     def get_full_path(self, path):
         return os.path.join(self.base_path, 'storage', 'public', path)
 
-    def put(self, path, contents):
+    def put(self, path, file):
         full_path = self.get_full_path(path)
+        file_content = file.read()
         os.makedirs(os.path.dirname(full_path), exist_ok=True)
-        with open(full_path, 'w') as file:
-            file.write(contents)
+        
+        # Check if contents is bytes or string
+        mode = 'wb' if isinstance(file_content, bytes) else 'w'
+        with open(full_path, mode) as file:
+            file.write(file_content)
 
     def get(self, path):
         full_path = self.get_full_path(path)
-        with open(full_path, 'r') as file:
+        with open(full_path, 'rb') as file:
             return file.read()
 
     def delete(self, path):
@@ -27,9 +33,9 @@ class LocalStorage:
         except FileNotFoundError as e:
             print(f"Error deleting local file: {e}")
 
-    def update(self, path, contents):
+    def update(self, path, file):
         self.delete(path)
-        self.put(path, contents)
+        self.put(path, file)
 
     def exists(self, path):
         full_path = self.get_full_path(path)
@@ -93,3 +99,9 @@ class LocalStorage:
             shutil.move(full_source_path, full_destination_path)
         except Exception as e:
             print(f"Error moving local file: {e}")
+
+    def content_type(self, path):
+        content_type, _ = mimetypes.guess_type(path)
+        if not content_type:
+            content_type = 'application/octet-stream'
+        return content_type

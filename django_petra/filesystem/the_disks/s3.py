@@ -1,4 +1,5 @@
 import boto3
+import mimetypes
 from botocore.exceptions import ClientError
 from django_petra.env import get_env
 
@@ -18,16 +19,23 @@ class S3Storage:
             region_name=aws_region
         )
 
-    def put(self, path, contents):
+    def put(self, path, file):
         try:
-            self.s3_client.put_object(Body=contents, Bucket=self.s3_bucket, Key=path)
+            file_content = file.read()
+            content_type, _ = mimetypes.guess_type(file.name)
+            self.s3_client.put_object(
+                Body=file_content,
+                Bucket=self.s3_bucket,
+                Key=path, 
+                ContentType=content_type
+            )
         except ClientError as e:
             print(f"Error putting object to S3: {e}")
 
     def get(self, path):
         try:
             response = self.s3_client.get_object(Bucket=self.s3_bucket, Key=path)
-            return response['Body'].read().decode('utf-8')
+            return response['Body'].read()
         except ClientError as e:
             print(f"Error getting object from S3: {e}")
 
@@ -37,9 +45,9 @@ class S3Storage:
         except ClientError as e:
             print(f"Error deleting object from S3: {e}")
 
-    def update(self, path, contents):
+    def update(self, path, file):
         self.delete(path)
-        self.put(path, contents)
+        self.put(path, file)
 
     def exists(self, path):
         try:
@@ -99,3 +107,9 @@ class S3Storage:
     def move(self, source, destination):
         self.copy(source, destination)
         self.delete(source)
+
+    def content_type(self, path):
+        content_type, _ = mimetypes.guess_type(path)
+        if not content_type:
+            content_type = 'application/octet-stream'
+        return content_type

@@ -98,6 +98,12 @@ class Storage:
             self.local_storage.move(source, destination)
         elif self.disk == 's3':
             self.s3_storage.move(source, destination)
+    
+    def content_type(self, path):
+        if self.disk == 'local':
+            return self.local_storage.content_type(path)
+        elif self.disk == 's3':
+            return self.s3_storage.content_type(path)
 
 # Create an instance of the Storage class
 storage = Storage()
